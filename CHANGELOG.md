@@ -1,4 +1,4 @@
-# 1.0.2
+# 2.0.0
 
 - fix: add jsonDecode to parse `clickStation` response
 - fix: change `UUID` types from `int` to `String` in `StationClickCounter` and `StationClick` models
