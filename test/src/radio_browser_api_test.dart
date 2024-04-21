@@ -13,8 +13,14 @@ void main() {
       final stations =
           await RadioBrowserApi.fromHost('de1.api.radio-browser.info')
               .getStationsByName(name: "America's Greatest 80s Hits");
+
+      final clickResponse =
+          await RadioBrowserApi.fromHost('de1.api.radio-browser.info')
+              .clickStation(uuid: stations.items.first.stationUUID);
+
       expect(countries, isNotNull);
       expect(stations, isNotNull);
+      expect(clickResponse, isNotNull);
     });
   });
 }

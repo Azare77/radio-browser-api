@@ -1,3 +1,9 @@
+# 1.0.2
+
+- fix: add jsonDecode to parse `clickStation` response
+- fix: change `UUID` types from `int` to `String` in `StationClickCounter` and `StationClick` models
+- chore: update `http` version to `">=0.13.0 <2.0.0"`
+
 # 1.0.1
 
 - fix: parse responses with utf8

@@ -571,7 +571,8 @@ class RadioBrowserApi {
     );
 
     final response = await http.get(uri);
-    return StationClickCounter.fromJson((response.body as Map).cast());
+    final jsonBody = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+    return StationClickCounter.fromJson(jsonBody.cast());
   }
 
   /// A list of radio stations that match the search. It will search for the
@@ -844,8 +845,8 @@ class RadioBrowserApi {
     );
 
     final response = await http.get(uri);
-    return StationVote.fromJson(
-        (jsonDecode(utf8.decode(response.bodyBytes)) as Map).cast());
+    final jsonBody = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+    return StationVote.fromJson(jsonBody.cast());
   }
 
   /// Add a radio station to the database.
@@ -895,7 +896,7 @@ class RadioBrowserApi {
     );
 
     final response = await http.post(uri);
-    return StationAdd.fromJson(
-        (jsonDecode(utf8.decode(response.bodyBytes)) as Map).cast());
+    final jsonBody = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+    return StationAdd.fromJson(jsonBody.cast());
   }
 }

@@ -7,8 +7,8 @@ part of 'station_click.dart';
 // **************************************************************************
 
 StationClick _$StationClickFromJson(Map<String, dynamic> json) => StationClick(
-      stationUUID: json['stationuuid'] as int,
-      clickUUID: json['clickuuid'] as int,
+      stationUUID: json['stationuuid'] as String,
+      clickUUID: json['clickuuid'] as String,
       clickTimestamp: json['clicktimestamp'] as int,
     );
 

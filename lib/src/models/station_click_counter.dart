@@ -25,7 +25,7 @@ class StationClickCounter {
 
   /// The UUID of the station in the database.
   @JsonKey(name: 'stationuuid')
-  final int stationUUID;
+  final String stationUUID;
 
   /// The name of the station.
   final String name;
