@@ -10,7 +10,7 @@ StationClickCounter _$StationClickCounterFromJson(Map<String, dynamic> json) =>
     StationClickCounter(
       ok: json['ok'] as bool,
       message: json['message'] as String,
-      stationUUID: json['stationuuid'] as int,
+      stationUUID: json['stationuuid'] as String,
       name: json['name'] as String,
       url: json['url'] as String,
     );

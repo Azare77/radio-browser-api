@@ -20,11 +20,11 @@ class StationClick {
 
   /// The UUID of the station in the database.
   @JsonKey(name: 'stationuuid')
-  final int stationUUID;
+  final String stationUUID;
 
   /// The UUID of the click in the database.
   @JsonKey(name: 'clickuuid')
-  final int clickUUID;
+  final String clickUUID;
 
   /// The timestamp of the click.
   @JsonKey(name: 'clicktimestamp')
