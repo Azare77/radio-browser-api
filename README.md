@@ -16,7 +16,7 @@ Add `radio_browser_api` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  radio_browser_api: ^1.0.2
+  radio_browser_api: ^2.0.0
 ```
 
 Install it:

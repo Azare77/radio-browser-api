@@ -1,6 +1,6 @@
 name: radio_browser_api
 description: An HTTP client for Radio Browser
-version: 1.0.2
+version: 2.0.0
 homepage: https://github.com/tomassasovsky/radio-browser-api.dart.git
 
 environment:
