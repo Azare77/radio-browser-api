@@ -23,6 +23,62 @@ class RadioBrowserApi {
   /// {@macro radio_browser_api}
   const RadioBrowserApi.fromHost(this.host);
 
+  /// Creates a [RadioBrowserApi] instance by discovering
+  /// an available Radio Browser server automatically.
+  ///
+  /// This method fetches the list of available servers,
+  /// randomizes them, and tries each server until a working
+  /// instance is found.
+  ///
+  /// Throws an [Exception] if no available server can be reached.
+  static Future<RadioBrowserApi> initialize({
+    String useragent = 'radio_broweser_api',
+  }) async {
+    final servers = await _getServers(useragent);
+
+    if (servers.isEmpty) {
+      throw Exception('No RadioBrowser servers available');
+    }
+
+    servers.shuffle();
+
+    for (final host in servers) {
+      try {
+        final api = RadioBrowserApi.fromHost(host);
+
+        await api.getStationsByName(name: 'test');
+
+        return api;
+      } catch (_) {
+        continue;
+      }
+    }
+
+    throw Exception('No working RadioBrowser server found');
+  }
+
+  static Future<List<String>> _getServers(String userAgent) async {
+    final response = await http.get(
+      Uri.parse(
+        'https://all.api.radio-browser.info/json/servers',
+      ),
+      headers: {
+        'User-Agent': userAgent,
+      },
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to fetch servers');
+    }
+
+    final data = jsonDecode(response.body) as List<dynamic>;
+
+    return data
+        .cast<Map<String, dynamic>>()
+        .map((e) => e['name'] as String)
+        .toList();
+  }
+
   /// The host of the Radio Browser API.
   final String host;
 
