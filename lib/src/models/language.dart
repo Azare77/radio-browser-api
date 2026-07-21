@@ -23,7 +23,7 @@ class Language {
 
   /// The language code in ISO 639-1 format (2 letters).
   @JsonKey(name: 'iso_639')
-  final String iso639;
+  final String? iso639;
 
   /// The amount of stations in this language.
   @JsonKey(name: 'stationcount')

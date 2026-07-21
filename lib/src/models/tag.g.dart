@@ -8,7 +8,7 @@ part of 'tag.dart';
 
 Tag _$TagFromJson(Map<String, dynamic> json) => Tag(
       name: json['name'] as String,
-      stationCount: json['stationcount'] as int,
+      stationCount: (json['stationcount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$TagToJson(Tag instance) => <String, dynamic>{

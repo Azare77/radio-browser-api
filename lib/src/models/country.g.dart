@@ -9,7 +9,7 @@ part of 'country.dart';
 Country _$CountryFromJson(Map<String, dynamic> json) => Country(
       name: json['name'] as String,
       iso31661: json['iso_3166_1'] as String,
-      stationCount: json['stationcount'] as int,
+      stationCount: (json['stationcount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$CountryToJson(Country instance) => <String, dynamic>{

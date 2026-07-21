@@ -9,7 +9,7 @@ part of 'station_click.dart';
 StationClick _$StationClickFromJson(Map<String, dynamic> json) => StationClick(
       stationUUID: json['stationuuid'] as String,
       clickUUID: json['clickuuid'] as String,
-      clickTimestamp: json['clicktimestamp'] as int,
+      clickTimestamp: (json['clicktimestamp'] as num).toInt(),
     );
 
 Map<String, dynamic> _$StationClickToJson(StationClick instance) =>

@@ -8,7 +8,7 @@ part of 'codec.dart';
 
 AudioCodec _$AudioCodecFromJson(Map<String, dynamic> json) => AudioCodec(
       name: json['name'] as String,
-      stationCount: json['stationcount'] as int,
+      stationCount: (json['stationcount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$AudioCodecToJson(AudioCodec instance) =>

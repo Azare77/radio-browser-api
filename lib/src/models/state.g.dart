@@ -9,7 +9,7 @@ part of 'state.dart';
 State _$StateFromJson(Map<String, dynamic> json) => State(
       country: json['country'] as String,
       name: json['name'] as String,
-      stationCount: json['stationcount'] as int,
+      stationCount: (json['stationcount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$StateToJson(State instance) => <String, dynamic>{
