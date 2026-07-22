@@ -49,7 +49,7 @@ class RadioBrowserApi {
         final uri = Uri(
           scheme: 'https',
           host: host,
-          path: '/json/states',
+          path: '/json/stats',
         );
         final response = await http.get(
           uri,
