@@ -31,10 +31,10 @@ class RadioBrowserApi {
   /// instance is found.
   ///
   /// Throws an [Exception] if no available server can be reached.
-  static Future<RadioBrowserApi> initialize({
-    String useragent = 'radio_broweser_api',
+  static Future<RadioBrowserApi> discoverHost({
+    String userAgent = 'radio_browser_api',
   }) async {
-    final servers = await _getServers(useragent);
+    final servers = await _getServers(userAgent);
 
     if (servers.isEmpty) {
       throw Exception('No RadioBrowser servers available');
@@ -42,19 +42,37 @@ class RadioBrowserApi {
 
     servers.shuffle();
 
+    Object? lastError;
+
     for (final host in servers) {
       try {
-        final api = RadioBrowserApi.fromHost(host);
+        final uri = Uri(
+          scheme: 'https',
+          host: host,
+          path: '/json/states',
+        );
+        final response = await http.get(
+          uri,
+          headers: {
+            'User-Agent': userAgent,
+          },
+        );
 
-        await api.getStationsByName(name: 'test');
+        if (response.statusCode != 200) {
+          throw Exception(
+            'Server $host returned HTTP ${response.statusCode}',
+          );
+        }
 
-        return api;
-      } catch (_) {
-        continue;
+        return RadioBrowserApi.fromHost(host);
+      } catch (e) {
+        lastError = e;
       }
     }
 
-    throw Exception('No working RadioBrowser server found');
+    throw Exception(
+      'No working RadioBrowser server found. Last error: $lastError',
+    );
   }
 
   static Future<List<String>> _getServers(String userAgent) async {
